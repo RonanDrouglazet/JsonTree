@@ -1,14 +1,24 @@
 JsonTree
 ========
 
-CLI USE ONLY
+Write json list of all directory's files path in a file
 
-Create JSON manifest (list all the files on this directory)
+    npm install (-g) jsontree-js
 
-Example:
+## Module Usage
 
-    > node jsontree.js ../testDirectory ../list.json
+    var jsontree = require('jsontree-js');
 
-    result in write ../list.json
+    jsontree.write(dir, file);
 
-    > ["toto.txt", "tata.txt", "module/test.js"]
+dir: String optional default ./
+file: String optional default ./manifest.json
+
+## Shell Usage (assuming npm install -g jsontree-js)
+
+    > jsontree [optional DIR=./] [optional FILE=[DIR]manifest.json]
+
+## Output write on [file]
+
+    ['foo.js', 'bar/foo.css', 'bar/foo/bar.txt']
+

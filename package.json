@@ -1,7 +1,7 @@
 {
-  "name": "JsonTree",
-  "version": "0.0.0",
-  "description": "create JSON manifest",
+  "name": "jsontree-js",
+  "version": "0.0.1",
+  "description": "create JSON manifest [FILE] with all [DIR]'s files in it",
   "main": "jsontree.js",
   "scripts": {
     "test": "node jsontree.js"
@@ -14,11 +14,15 @@
     "json",
     "file",
     "manifest",
-    "array"
+    "array",
+    "tree",
+    "path",
+    "list"
   ],
   "author": "RonanDrouglazet",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/RonanDrouglazet/JsonTree/issues"
-  }
+  },
+  "bin" : { "jsontree" : "bin/cli.js" }
 }
