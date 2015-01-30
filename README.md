@@ -11,8 +11,9 @@ Write json list of all directory's files path in a file
 
     jsontree.write(dir, file);
 
-dir: String optional default ./
-file: String optional default ./manifest.json
+dir: String optional default = ./
+
+file: String optional default = ./manifest.json
 
 ## Shell Usage (assuming npm install -g jsontree-js)
 
