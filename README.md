@@ -1,9 +1,9 @@
 JsonTree
 ========
 
-Create JSON array in a file fill with the target directory (all the files on this directory)
+CLI USE ONLY
 
-ONLY WITH CLI
+Create JSON manifest (list all the files on this directory)
 
 Example:
 

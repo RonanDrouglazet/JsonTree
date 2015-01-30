@@ -1,26 +1,24 @@
 var fs = require('fs');
 
-function init() {
-    var dir, file;
-    if (process.argv.length <= 2) {
-        console.error("JsonTree error: missing arguments");
-    } else {
-        dir = process.argv[2];
-        file = process.argv[3];
-
-        walk(dir, function(error, result) {
-            if (!error) {
-                result.forEach(function(entry, index) {
-                    result[index] = entry.replace(dir + "/", "");
-                });
-                console.log(result);
-                fs.writeFileSync(file, JSON.stringify(result));
-                console.log("JsonTree: file " + file + " saved");
-            } else {
-                console.error("JsonTree error", error);
-            }
-        });
+exports.list = function() {
+    var dir = process.argv.length > 2 ? process.argv[2] : './';
+    if (dir[dir.length-1] !== '/') {
+        dir += '/';
     }
+    var file = process.argv.length > 3 ? process.argv[3] : dir + 'manifest.json';
+
+    walk(dir, function(error, result) {
+        if (!error) {
+            result.forEach(function(entry, index) {
+                result[index] = entry.replace(dir + "/", "");
+            });
+            console.log(result);
+            fs.writeFileSync(file, JSON.stringify(result));
+            console.log("JsonTree: file " + file + " saved");
+        } else {
+            console.error("JsonTree error", error);
+        }
+    });
 }
 
 function walk(dir, done) {
@@ -59,4 +57,6 @@ function walk(dir, done) {
     });
 }
 
-init();
+if (process.argv[0] === 'jsontree' || process.argv[1].indexOf('jsontree.js') !== -1) {
+    exports.list();
+}
