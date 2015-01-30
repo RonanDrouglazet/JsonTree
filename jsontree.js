@@ -1,11 +1,13 @@
 var fs = require('fs');
 
-exports.list = function() {
-    var dir = process.argv.length > 2 ? process.argv[2] : './';
+exports.write = function(dir, file) {
+    dir = dir || './';
+
     if (dir[dir.length-1] !== '/') {
         dir += '/';
     }
-    var file = process.argv.length > 3 ? process.argv[3] : dir + 'manifest.json';
+
+    file = file || dir + 'manifest.json';
 
     walk(dir, function(error, result) {
         if (!error) {
@@ -55,8 +57,4 @@ function walk(dir, done) {
             });
         });
     });
-}
-
-if (process.argv[0] === 'jsontree' || process.argv[1].indexOf('jsontree.js') !== -1) {
-    exports.list();
 }
