@@ -1,12 +1,7 @@
 var fs = require('fs');
 
 exports.write = function(dir, file) {
-    dir = dir || './';
-
-    if (dir[dir.length-1] !== '/') {
-        dir += '/';
-    }
-
+    dir = formDir(dir);
     file = file || dir + 'manifest.json';
 
     walk(dir, function(error, result) {
@@ -17,6 +12,21 @@ exports.write = function(dir, file) {
             console.log(result);
             fs.writeFileSync(file, JSON.stringify(result));
             console.log("JsonTree: file " + file + " saved");
+        } else {
+            console.error("JsonTree error", error);
+        }
+    });
+}
+
+exports.list = function(done, dir) {
+    dir = formDir(dir);
+
+    walk(dir, function(error, result) {
+        if (!error) {
+            result.forEach(function(entry, index) {
+                result[index] = entry.replace(dir + "/", "");
+            });
+            done(result);
         } else {
             console.error("JsonTree error", error);
         }
@@ -57,4 +67,14 @@ function walk(dir, done) {
             });
         });
     });
+}
+
+function formDir(dir) {
+    dir = dir || './';
+
+    if (dir[dir.length-1] !== '/') {
+        dir += '/';
+    }
+
+    return dir;
 }

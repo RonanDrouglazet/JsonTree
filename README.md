@@ -9,7 +9,11 @@ Write json list of all directory's files path in a file
 
     var jsontree = require('jsontree-js');
 
+    // write directory's files list on a json file
     jsontree.write(dir, file);
+
+    // return a json list of directory's files
+    jsontree.list(done, dir);
 
 dir: String optional default = ./
 
