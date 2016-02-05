@@ -1,6 +1,6 @@
 {
   "name": "jsontree-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "create JSON manifest [FILE] with all [DIR]'s files in it",
   "main": "jsontree.js",
   "scripts": {
